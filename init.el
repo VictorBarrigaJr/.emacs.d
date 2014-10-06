@@ -93,6 +93,12 @@
 (require 'ido) 
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
+(setq ido-enable-prefix nil
+(setq ido-create-new-buffer 'always
+(setq ido-use-filename-at-point 'guess
+(setq ido-max-prospects 10
+(setq ido-default-file-method 'selected-window
+(setq ido-auto-merge-work-directories-length -1)
 (ido-mode 1)
 
 ;; Find File at Point - used to open a directory path 
@@ -191,7 +197,6 @@
               (ggtags-mode 1))))
 
 (add-hook 'dired-mode-hook 'ggtags-mode)
-
 
 ;; full screen
 (defun fullscreen ()
