@@ -109,7 +109,6 @@
 
 (require 'cl) ;; common list 
 (require 'compile)
-(require 'recentf)
 
 ;; Package: smartparens
 (require 'smartparens-config)
@@ -189,7 +188,13 @@
 (setq confirm-kill-emacs 'yes-or-no-p)
 
 ;; file settings
-;;; save all backups in one folder
+;; recent files
+(require 'recentf)
+(setq
+ recentf-max-menu-items 30
+ recentf-max-saved-items 5000
+)
+;; save all backups in one folder
 (setq backup-directory-alist '(("."."~/.emacs.d/saves")))
 ;; group: Files 
 (setq large-file-warning-threshold 100000000) ;; size in bytes
