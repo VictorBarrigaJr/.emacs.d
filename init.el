@@ -70,7 +70,7 @@
 	 emacs-goodies-el escreen fill-column-indicator fuzzy flymake gnus 	 
 	 ggtags iedit minimap notify package popup smex smooth-scrolling
 	 switch-window volatile-highlights yasnippet smartparens undo-tree 
-         whitespace company-mode golden-ratio )))
+         whitespace company-mode golden-ratio rainbow-mode)))
 
 (el-get 'sync my:el-get-packages)
 
@@ -159,6 +159,10 @@
  '(linum ((t (:foreground "black" :weight bold))))
  '(vertical-border ((t nil))))
 
+;; rainbow-mode package sets background color to string matches
+(add-hook 'html-mode-hook 'rainbow-mode)
+(add-hook 'css-mode-hook 'rainbow-mode)
+
 ;; No tabs
 (setq-default indent-tabs-mode nil)
 
@@ -234,7 +238,6 @@
 ;; "user": define your own style
 (setq c-default-style "gnu" ; set to "gnu"
       c-basic-offset 4)
-
 
 ;; GROUP: Programming -> Tools -> Gdb ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
