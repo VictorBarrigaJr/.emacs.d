@@ -116,6 +116,10 @@
 (require 'whitespace)
 (require 'magit)
 
+;; Undo-tree - editing - view whole history of editing in a tree
+(require 'undo-tree)
+(global-undo-tree-mode)
+
 (ac-config-default) ;; auto-complete global
 (yas-global-mode 1) ;; yasnippet global
 
