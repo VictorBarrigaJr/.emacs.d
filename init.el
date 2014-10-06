@@ -164,7 +164,6 @@
 
 (add-hook 'dired-mode-hook 'ggtags-mode)
 
-
 ;; full screen
 (defun fullscreen ()
   (interactive)
