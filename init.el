@@ -195,7 +195,6 @@
 (setq large-file-warning-threshold 100000000) ;; size in bytes
 (setq 
  make-backup-files t        ; backup a file the first time it is saved
- backup-directory-alist `((".*" . ,backup-directory)) ; save in ~/.backups
  backup-by-copying t     ; copy the current file into backup directory
  version-control t   ; version numbers for backup files
  delete-old-versions t   ; delete unnecessary versions
