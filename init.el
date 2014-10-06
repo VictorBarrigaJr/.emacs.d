@@ -69,7 +69,7 @@
        '(auto-complete auto-complete-c-headers buffer-move color-theme el-get
 	 emacs-goodies-el escreen fill-column-indicator fuzzy flymake gnus 	 
 	 ggtags iedit minimap notify package popup smex smooth-scrolling
-	 switch-window volatile-highlights yasnippet)))
+	 switch-window volatile-highlights yasnippet smartparens)))
 
 (el-get 'sync my:el-get-packages)
 
@@ -99,6 +99,14 @@
 (require 'cl) ;; common list 
 (require 'compile)
 (require 'recentf)
+
+;; Package: smartparens
+(require 'smartparens-config)
+(setq sp-base-key-bindings 'paredit)
+(setq sp-autoskip-closing-pair 'always)
+(setq sp-hybrid-kill-entire-symbol nil)
+(sp-use-paredit-bindings)
+
 (require 'smooth-scrolling)
 (require 'uniquify)
 
