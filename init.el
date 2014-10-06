@@ -113,7 +113,13 @@
 
 (require 'cl) ;; common list 
 (require 'compile)
+
+;; files recent
 (require 'recentf)
+(setq
+ recentf-max-menu-items 30
+ recentf-max-saved-items 5000
+ )
 
 ;; Package: smartparens
 (require 'smartparens-config)
