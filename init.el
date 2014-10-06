@@ -110,6 +110,8 @@
 (require 'cl) ;; common list 
 (require 'compile)
 
+(require 'flymake)
+
 ;; Package: smartparens
 (require 'smartparens-config)
 (show-smartparens-global-mode +1)
@@ -179,9 +181,9 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (setq ibuffer-use-other-window t) ;; display buffer in another window
 
-
 ;; Ctrl X-Ctrl S button dangerously close to Ctrl X-Ctrl C
 (setq confirm-kill-emacs 'yes-or-no-p)
+
 
 ;; file settings
 ;; recent files
@@ -215,6 +217,7 @@
 
 (add-hook 'dired-mode-hook 'ggtags-mode)
 
+
 ;; screen/window settings
 ;; navigate windows with M-<arros>
 (windmove-default-keybindings 'meta)
@@ -228,6 +231,7 @@
 ;;golden ratio package
 (require 'golden-ratio)
 (golden-ratio-mode)
+
 
 ;; notifies you once emacs is ready to use and the load time 
 (defun dim:notify-startup-done ()
