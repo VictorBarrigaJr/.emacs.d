@@ -69,7 +69,7 @@
        '(auto-complete auto-complete-c-headers buffer-move color-theme el-get
 	 emacs-goodies-el escreen fill-column-indicator fuzzy flymake gnus 	 
 	 ggtags iedit minimap notify package popup smex smooth-scrolling
-	 switch-window volatile-highlights yasnippet smartparens)))
+	 switch-window volatile-highlights yasnippet smartparens undo-tree )))
 
 (el-get 'sync my:el-get-packages)
 
@@ -105,6 +105,11 @@
 (show-smartparens-global-mode +1)
 
 (require 'smooth-scrolling)
+
+;; Undo-tree - editing - view whole history of editing in a tree
+(require 'undo-tree)
+(global-undo-tree-mode)
+
 (require 'uniquify)
 
 ;;Volatile-Highlights - edit tool - highlights changes to buffer
