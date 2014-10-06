@@ -69,7 +69,7 @@
        '(auto-complete auto-complete-c-headers buffer-move color-theme el-get
 	 emacs-goodies-el escreen fill-column-indicator fuzzy flymake gnus 	 
 	 ggtags iedit minimap notify package popup smex switch-window 
-         yasnippet)))
+         volatile-highlights yasnippet)))
 
 (el-get 'sync my:el-get-packages)
 
@@ -89,6 +89,10 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
+
+;; Volatile-Highlights - edit tool - highlights changes to buffer
+(require 'volatile-highlights)
+(volatile-highlights-mode t)  
 
 ;; Find File at Point - used to open a directory path 
 (require 'ffap) 
@@ -155,6 +159,7 @@
 
 ;; Ctrl X-Ctrl S button dangerously close to Ctrl X-Ctrl C
 (setq confirm-kill-emacs 'yes-or-no-p)
+
 
 ;; c cc-mode
 (add-hook 'c-mode-common-hook
