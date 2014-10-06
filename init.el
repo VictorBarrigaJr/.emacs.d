@@ -180,3 +180,5 @@
 	      (float-time (time-subtract after-init-time before-init-time)))))
 
 (add-hook 'after-init-hook 'dim:notify-startup-done)
+
+
