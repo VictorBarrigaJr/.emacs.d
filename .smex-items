@@ -1,0 +1,18 @@
+
+;; ----- smex-history -----
+(
+ ggtags-find-file
+ ggtags-create-tags
+ ggtags-mode
+ cd
+ df
+ 5x5
+ all
+)
+
+;; ----- smex-data -----
+(
+ (ggtags-mode . 2)
+ (ggtags-create-tags . 1)
+ (ggtags-find-file . 1)
+)
