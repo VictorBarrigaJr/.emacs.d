@@ -66,10 +66,11 @@
 ;; my el-get packages
 (setq my:el-get-packages
       (append
-       '(auto-complete auto-complete-c-headers buffer-move color-theme el-get
-	 emacs-goodies-el escreen fill-column-indicator fuzzy flymake gnus 	 
-	 ggtags iedit minimap notify package popup smartparens smex 
-         switch-window volatile-highlights undo-tree yasnippet)))
+       '(auto-complete auto-complete-c-headers buffer-move color-theme 
+         company-mode el-get emacs-goodies-el escreen fill-column-indicator 
+         fuzzy flymake gnus ggtags iedit minimap notify package popup 
+         smartparens smex switch-window volatile-highlights undo-tree 
+         yasnippet)))
 
 (el-get 'sync my:el-get-packages)
 
@@ -82,6 +83,9 @@
 (bookmark-bmenu-list)
 (switch-to-buffer "*Bookmark List*")
 
+;; company-mode code snippet package
+(add-hook 'after-init-hook 'global-company-mode)
+
 ;; occur key binding find all occurances of string
 (global-set-key (kbd "C-c o") 'occur)
 
@@ -89,6 +93,12 @@
 (require 'ido) 
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
+(setq ido-enable-prefix nil
+(setq ido-create-new-buffer 'always
+(setq ido-use-filename-at-point 'guess
+(setq ido-max-prospects 10
+(setq ido-default-file-method 'selected-window
+(setq ido-auto-merge-work-directories-length -1)
 (ido-mode 1)
 
 ;; Volatile-Highlights - edit tool - highlights changes to buffer
