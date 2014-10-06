@@ -70,7 +70,7 @@
          company-mode el-get emacs-goodies-el escreen fill-column-indicator 
          fuzzy flymake gnus ggtags iedit minimap notify package popup 
          smartparens smex switch-window volatile-highlights undo-tree 
-         yasnippet)))
+         yasnippet nyan-mode)))
 
 (el-get 'sync my:el-get-packages)
 
@@ -141,7 +141,39 @@
 
 (require 'magit)
 
+;; PACKAGE: golden-ratio  -> Windows -> Golden Ratio ;;
 
+(require 'golden-ratio)
+
+(add-to-list 'golden-ratio-exclude-modes "ediff-mode")
+(add-to-list 'golden-ratio-exclude-modes "helm-mode")
+(add-to-list 'golden-ratio-exclude-modes "dired-mode")
+(add-to-list 'golden-ratio-inhibit-functions 'pl/helm-alive-p)
+
+(defun pl/helm-alive-p ()
+  (if (boundp 'helm-alive-p)
+      (symbol-value 'helm-alive-p)))
+
+;; do not enable golden-raio in thses modes
+(setq golden-ratio-exclude-modes '("ediff-mode"
+                                   "gud-mode"
+                                   "gdb-locals-mode"
+                                   "gdb-registers-mode"
+                                   "gdb-breakpoints-mode"
+                                   "gdb-threads-mode"
+                                   "gdb-frames-mode"
+                                   "gdb-inferior-io-mode"
+                                   "gud-mode"
+                                   "gdb-inferior-io-mode"
+                                   "gdb-disassembly-mode"
+                                   "gdb-memory-mode"
+                                   "magit-log-mode"
+                                   "magit-reflog-mode"
+                                   "magit-status-mode"
+                                   "IELM"
+                                   "eshell-mode" "dired-mode"))
+
+(golden-ratio-mode)
 
 ;; Undo-tree - editing - view whole history of editing in a tree
 (require 'undo-tree)
@@ -293,6 +325,12 @@
 
 ;; GROUP: Programming -> Tools -> Flycheck ;;
 (require 'flymake)
+
+;; nyan-mode Environment -> Frames -> Nyan ;;
+;; only turn on if a window system is available
+;; this prevents error under terminal that does not support X
+(case window-system
+  ((x w32) (nyan-mode)))
 
 ;; full screen
 (defun fullscreen ()
