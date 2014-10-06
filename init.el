@@ -70,7 +70,7 @@
 	 emacs-goodies-el escreen fill-column-indicator fuzzy flymake gnus 	 
 	 ggtags iedit minimap notify package popup smex smooth-scrolling
 	 switch-window volatile-highlights yasnippet smartparens undo-tree 
-         whitespace )))
+         whitespace company-mode)))
 
 (el-get 'sync my:el-get-packages)
 
@@ -82,6 +82,10 @@
 (require 'bookmark) ;; sets bookmarks to files and locations to open later
 (bookmark-bmenu-list)
 (switch-to-buffer "*Bookmark List*")
+
+;; Company is a text completion framework, to use on all buffers 
+(add-hook 'after-init-hook 'global-company-mode)
+
 ;; occur key binding find all occurances of string
 (global-set-key (kbd "C-c o") 'occur)
 
