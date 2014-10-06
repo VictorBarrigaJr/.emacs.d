@@ -70,7 +70,7 @@
 	 emacs-goodies-el escreen fill-column-indicator fuzzy flymake gnus 	 
 	 ggtags iedit minimap notify package popup smex smooth-scrolling
 	 switch-window volatile-highlights yasnippet smartparens undo-tree 
-         whitespace)))
+         whitespace ibuffer)))
 
 (el-get 'sync my:el-get-packages)
 
@@ -168,6 +168,7 @@
 
 ;; replace list-buffers with ibuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+(setq ibuffer-use-other-window t) ;; display buffer in another window
 
 ;; navigate windows with M-<arros>
 (windmove-default-keybindings 'meta)
