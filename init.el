@@ -69,7 +69,7 @@
        '(auto-complete auto-complete-c-headers buffer-move color-theme el-get
 	 emacs-goodies-el escreen fill-column-indicator fuzzy flymake gnus 	 
 	 ggtags iedit minimap notify package popup smartparens smex 
-         switch-window volatile-highlights yasnippet)))
+         switch-window volatile-highlights undo-tree yasnippet)))
 
 (el-get 'sync my:el-get-packages)
 
@@ -81,6 +81,7 @@
 (require 'bookmark) ;; sets bookmarks to files and locations to open later
 (bookmark-bmenu-list)
 (switch-to-buffer "*Bookmark List*")
+
 ;; occur key binding find all occurances of string
 (global-set-key (kbd "C-c o") 'occur)
 
@@ -114,6 +115,14 @@
 (require 'smooth-scrolling)
 (require 'uniquify)
 (require 'whitespace)
+;; whenever you create useless whitespace, the whitespace is highlighted
+(add-hook 'prog-mode-hook 
+          (lambda () 
+            (interactive) (setq show-trailing-whitespace 1)))
+
+;; activate whitespace-mode to view all whitespace characters
+(global-set-key (kbd "C-c w") 'whitespace-mode)
+
 (require 'magit)
 
 ;; Undo-tree - editing - view whole history of editing in a tree
@@ -161,6 +170,7 @@
 
 ;; replace list-buffers with ibuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+(setq ibutter-use-other-window t) ;; always display buffer in another window
 
 ;; navigate windows with M-<arros>
 (windmove-default-keybindings 'meta)
