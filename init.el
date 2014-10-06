@@ -69,7 +69,7 @@
        '(auto-complete auto-complete-c-headers buffer-move color-theme el-get
 	 emacs-goodies-el escreen fill-column-indicator fuzzy flymake gnus 	 
 	 ggtags iedit minimap notify package popup smex smooth-scrolling
-	 switch-window yasnippet)))
+	 switch-window volatile-highlights yasnippet)))
 
 (el-get 'sync my:el-get-packages)
 
@@ -101,6 +101,11 @@
 (require 'recentf)
 (require 'smooth-scrolling)
 (require 'uniquify)
+
+;;Volatile-Highlights - edit tool - highlights changes to buffer
+(require 'volatile-highlights)
+(volatile-highlights-mode t) 
+
 (require 'whitespace)
 (require 'magit)
 
