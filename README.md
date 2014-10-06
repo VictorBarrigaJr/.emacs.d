@@ -1,4 +1,4 @@
-my_emacs_init.el
+Emacs .emacs.d/init.el
 ================
 
-Emacs configuration file init.el
+My personal emacs configuration file for init.el
