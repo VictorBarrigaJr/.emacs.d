@@ -227,22 +227,27 @@
 
 (add-hook 'dired-mode-hook 'ggtags-mode)
 
+;; programming set-up - to be separate file
 (provide 'setup-programming)
-;; GROUP: Programming -> Languages -> C
 
-;; Available C : The default style for GNU k&: What Kernighan and Ritchie, the authors of C used in their : What BSD developers use, Allman  after Eric : Popularized by the examples that came with Whitesmiths C, an early commercial C : What Stroustrup, the author of C++ used in his : Popular C++ coding standards as defined Programming in C++, Rules and  Erik Nyquist and Mats Henricson, : What the Linux developers use for kernel : What Python developers use for extension : The default style for java-mode (see : When you want to define your own style
+;; Available C styles: 
+;; gnu The default style for GNU projects
+;; k&r: What Kernighan and Ritchie, the authors of C 
+;; bsd: What BSD developers use, Allman Style 
+;; whitesmith: Popularized by the examples that came with Whitesmiths C
+;; stroustrup: What Stroustrup, the author of C++
+;; linux: What the Linux developers use for kernel 
+;; python: What Python developers use for extension 
+;; java: The default style for java-mode 
+;; usere : When you want to define your own style
 (setq c-default-style "linux" ; set style to "linux"
       c-basic-offset 4)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; GROUP: Programming -> Tools -> Gdb ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq gdb-many-windows t        ; use gdb-many-windows by default
       gdb-show-main t)          ; Non-nil means display source file containing the main routine at startup
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; GROUP: Programming -> Tools -> Compilation ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Compilation from Emacs
 (defun prelude-colorize-compilation-buffer ()
   "Colorize a compilation mode buffer."
@@ -284,6 +289,10 @@
 ;; rprojects
 ;; gnustyle:
 ;; 
+
+
+;; GROUP: Programming -> Tools -> Flycheck ;;
+(require 'flymake)
 
 ;; full screen
 (defun fullscreen ()
