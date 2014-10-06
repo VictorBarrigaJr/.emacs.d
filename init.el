@@ -66,11 +66,10 @@
 ;; my el-get packages
 (setq my:el-get-packages
       (append
-       '(auto-complete auto-complete-c-headers buffer-move color-theme 
-         company-mode el-get emacs-goodies-el escreen fill-column-indicator 
-         fuzzy flymake gnus ggtags iedit minimap notify package popup 
-         smartparens smex switch-window volatile-highlights undo-tree 
-         yasnippet)))
+       '(auto-complete auto-complete-c-headers buffer-move color-theme el-get
+	 emacs-goodies-el escreen fill-column-indicator fuzzy flymake gnus 	 
+	 ggtags iedit minimap notify package popup smex smooth-scrolling
+	 switch-window yasnippet)))
 
 (el-get 'sync my:el-get-packages)
 
@@ -82,10 +81,6 @@
 (require 'bookmark) ;; sets bookmarks to files and locations to open later
 (bookmark-bmenu-list)
 (switch-to-buffer "*Bookmark List*")
-
-;; company-mode code snippet package
-(add-hook 'after-init-hook 'global-company-mode)
-
 ;; occur key binding find all occurances of string
 (global-set-key (kbd "C-c o") 'occur)
 
@@ -93,17 +88,7 @@
 (require 'ido) 
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
-(setq ido-enable-prefix nil
-(setq ido-create-new-buffer 'always
-(setq ido-use-filename-at-point 'guess
-(setq ido-max-prospects 10
-(setq ido-default-file-method 'selected-window
-(setq ido-auto-merge-work-directories-length -1)
 (ido-mode 1)
-
-;; Volatile-Highlights - edit tool - highlights changes to buffer
-(require 'volatile-highlights)
-(volatile-highlights-mode t)  
 
 ;; Find File at Point - used to open a directory path 
 (require 'ffap) 
@@ -113,37 +98,11 @@
 
 (require 'cl) ;; common list 
 (require 'compile)
-
-;; files recent
 (require 'recentf)
-(setq
- recentf-max-menu-items 30
- recentf-max-saved-items 5000
- )
-
-;; Package: smartparens
-(require 'smartparens-config)
-(setq sp-base-key-bindings 'paredit)
-(setq sp-autoskip-closing-pair 'always)
-(setq sp-hybrid-kill-entire-symbol nil)
-(sp-use-paredit-bindings)
-
 (require 'smooth-scrolling)
 (require 'uniquify)
-
 (require 'whitespace)
-;; whenever you create useless whitespace, the whitespace is highlighted
-(add-hook 'prog-mode-hook 
-          (lambda () 
-            (interactive) (setq show-trailing-whitespace 1)))
-;; activate whitespace-mode to view all whitespace characters
-(global-set-key (kbd "C-c w") 'whitespace-mode)
-
 (require 'magit)
-
-;; Undo-tree - editing - view whole history of editing in a tree
-(require 'undo-tree)
-(global-undo-tree-mode)
 
 (ac-config-default) ;; auto-complete global
 (yas-global-mode 1) ;; yasnippet global
@@ -186,7 +145,6 @@
 
 ;; replace list-buffers with ibuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(setq ibutter-use-other-window t) ;; always display buffer in another window
 
 ;; navigate windows with M-<arros>
 (windmove-default-keybindings 'meta)
@@ -198,25 +156,6 @@
 ;; Ctrl X-Ctrl S button dangerously close to Ctrl X-Ctrl C
 (setq confirm-kill-emacs 'yes-or-no-p)
 
-;; group: Files                      ;;
-(setq large-file-warning-threshold 100000000) ;; size in bytes
-
-;; GROUP: Files -> Back up            ;;
-(defvar backup-directory "~/.backups")
-(if (not (file-exists-p backup-directory))
-    (make-directory backup-directory t))
-(setq 
- make-backup-files t        ; backup a file the first time it is saved
- backup-directory-alist `((".*" . ,backup-directory)) ; save in ~/.backups
- backup-by-copying t     ; copy the current file into backup directory
- version-control t   ; version numbers for backup files
- delete-old-versions t   ; delete unnecessary versions
- kept-old-versions 6     ; oldest versions to keep (default: 2)
- kept-new-versions 9 ; newest versions to keep (default: 2)
- auto-save-default t ; auto-save every buffer that visits a file
- auto-save-timeout 20 ; idle time before auto-save (default: 30)
- auto-save-interval 200 ; number of keystrokes between auto-saves (default: 300)
- )
 ;; c cc-mode
 (add-hook 'c-mode-common-hook
           (lambda ()
@@ -242,5 +181,3 @@
 	      (float-time (time-subtract after-init-time before-init-time)))))
 
 (add-hook 'after-init-hook 'dim:notify-startup-done)
-
-
