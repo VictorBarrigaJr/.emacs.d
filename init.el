@@ -70,7 +70,7 @@
 	 emacs-goodies-el escreen fill-column-indicator fuzzy flymake gnus 	 
 	 ggtags iedit minimap notify package popup smex smooth-scrolling
 	 switch-window volatile-highlights yasnippet smartparens undo-tree 
-         whitespace ibuffer)))
+         whitespace )))
 
 (el-get 'sync my:el-get-packages)
 
