@@ -69,7 +69,8 @@
        '(auto-complete auto-complete-c-headers buffer-move color-theme el-get
 	 emacs-goodies-el escreen fill-column-indicator fuzzy flymake gnus 	 
 	 ggtags iedit minimap notify package popup smex smooth-scrolling
-	 switch-window volatile-highlights yasnippet smartparens undo-tree )))
+	 switch-window volatile-highlights yasnippet smartparens undo-tree 
+         whitespace)))
 
 (el-get 'sync my:el-get-packages)
 
@@ -116,7 +117,14 @@
 (require 'volatile-highlights)
 (volatile-highlights-mode t) 
 
+;; White Space package - visualize blanks
 (require 'whitespace)
+(global-set-key (kbd "C-c w") 'whitespace-mode)
+;; whenever you create useless whitespace, the whitespace is highlighted
+(add-hook 'prog-mode-hook 
+          (lambda () 
+            (interactive) (setq show-trailing-whitespace 1)))
+
 (require 'magit)
 
 (ac-config-default) ;; auto-complete global
