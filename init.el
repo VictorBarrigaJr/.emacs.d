@@ -130,50 +130,16 @@
 
 (require 'smooth-scrolling)
 (require 'uniquify)
+
 (require 'whitespace)
 ;; whenever you create useless whitespace, the whitespace is highlighted
 (add-hook 'prog-mode-hook 
           (lambda () 
             (interactive) (setq show-trailing-whitespace 1)))
-
 ;; activate whitespace-mode to view all whitespace characters
 (global-set-key (kbd "C-c w") 'whitespace-mode)
 
 (require 'magit)
-
-;; PACKAGE: golden-ratio  -> Windows -> Golden Ratio ;;
-
-(require 'golden-ratio)
-
-(add-to-list 'golden-ratio-exclude-modes "ediff-mode")
-(add-to-list 'golden-ratio-exclude-modes "helm-mode")
-(add-to-list 'golden-ratio-exclude-modes "dired-mode")
-(add-to-list 'golden-ratio-inhibit-functions 'pl/helm-alive-p)
-
-(defun pl/helm-alive-p ()
-  (if (boundp 'helm-alive-p)
-      (symbol-value 'helm-alive-p)))
-
-;; do not enable golden-raio in thses modes
-(setq golden-ratio-exclude-modes '("ediff-mode"
-                                   "gud-mode"
-                                   "gdb-locals-mode"
-                                   "gdb-registers-mode"
-                                   "gdb-breakpoints-mode"
-                                   "gdb-threads-mode"
-                                   "gdb-frames-mode"
-                                   "gdb-inferior-io-mode"
-                                   "gud-mode"
-                                   "gdb-inferior-io-mode"
-                                   "gdb-disassembly-mode"
-                                   "gdb-memory-mode"
-                                   "magit-log-mode"
-                                   "magit-reflog-mode"
-                                   "magit-status-mode"
-                                   "IELM"
-                                   "eshell-mode" "dired-mode"))
-
-(golden-ratio-mode)
 
 ;; Undo-tree - editing - view whole history of editing in a tree
 (require 'undo-tree)
@@ -259,72 +225,6 @@
 
 (add-hook 'dired-mode-hook 'ggtags-mode)
 
-;; programming set-up - to be separate file
-(provide 'setup-programming)
-
-;; Available C styles: 
-;; gnu The default style for GNU projects
-;; k&r: What Kernighan and Ritchie, the authors of C 
-;; bsd: What BSD developers use, Allman Style 
-;; whitesmith: Popularized by the examples that came with Whitesmiths C
-;; stroustrup: What Stroustrup, the author of C++
-;; linux: What the Linux developers use for kernel 
-;; python: What Python developers use for extension 
-;; java: The default style for java-mode 
-;; usere : When you want to define your own style
-(setq c-default-style "linux" ; set style to "linux"
-      c-basic-offset 4)
-
-;; GROUP: Programming -> Tools -> Gdb ;;
-(setq gdb-many-windows t        ; use gdb-many-windows by default
-      gdb-show-main t)          ; Non-nil means display source file containing the main routine at startup
-
-;; GROUP: Programming -> Tools -> Compilation ;;
-;; Compilation from Emacs
-(defun prelude-colorize-compilation-buffer ()
-  "Colorize a compilation mode buffer."
-  (interactive)
-  ;; we don't want to mess with child modes such as grep-mode, ack, ag, etc
-  (when (eq major-mode 'compilation-mode)
-    (let ((inhibit-read-only t))
-      (ansi-color-apply-on-region (point-min) (point-max)))))
-
-;; setup compilation-mode used by `compile' command
-(require 'compile)
-(setq compilation-ask-about-save nil          ; Just save before compiling
-      compilation-always-kill t               ; Just kill old compile processes before starting the new one
-      compilation-scroll-output 'first-error) ; Automatically scroll to first
-(global-set-key (kbd "<f5>") 'compile)
-
-;; GROUP: Programming -> Tools -> Makefile
-;; takenn from prelude-c.el:48: https://github.com/bbatsov/prelude/blob/master/modules/prelude-c.el
-(defun prelude-makefile-mode-defaults ()
-  (whitespace-toggle-options '(tabs))
-  (setq indent-tabs-mode t ))
-
-(setq prelude-makefile-mode-hook 'prelude-makefile-mode-defaults)
-
-(add-hook 'makefile-mode-hook (lambda ()
-                                (run-hooks 'prelude-makefile-mode-hook)))
-
-;; GROUP: Programming -> Tools -> Ediff
-(setq ediff-diff-options "-w"
-      ediff-split-window-function 'split-window-horizontally
-      ediff-window-setup-function 'ediff-setup-windows-plain)userbelow)
-;; javamodules
-;; pythondevelopment
-;; linuxEllemtel
-;; Recommendations,by ellemtelbook
-;; stroustrupcompiler.
-;; whitesmithAllman.
-;; styleaka bsdbook
-;; rprojects
-;; gnustyle:
-;; 
-
-
-;; GROUP: Programming -> Tools -> Flycheck ;;
-(require 'flymake)
 
 ;; full screen
 (defun fullscreen ()
