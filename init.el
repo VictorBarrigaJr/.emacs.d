@@ -70,7 +70,7 @@
 	 emacs-goodies-el escreen fill-column-indicator fuzzy flymake gnus 	 
 	 ggtags iedit minimap notify package popup smex smooth-scrolling
 	 switch-window volatile-highlights yasnippet smartparens undo-tree 
-         whitespace company-mode)))
+         whitespace company-mode golden-ratio )))
 
 (el-get 'sync my:el-get-packages)
 
@@ -179,10 +179,6 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (setq ibuffer-use-other-window t) ;; display buffer in another window
 
-;; navigate windows with M-<arros>
-(windmove-default-keybindings 'meta)
-(setq windmove-wrap-around t)
-
 
 ;; Ctrl X-Ctrl S button dangerously close to Ctrl X-Ctrl C
 (setq confirm-kill-emacs 'yes-or-no-p)
@@ -210,6 +206,7 @@
  auto-save-interval 200 ; number of keystrokes between auto-saves (default: 300)
 )
 
+
 ;; c cc-mode
 (add-hook 'c-mode-common-hook
           (lambda ()
@@ -218,12 +215,48 @@
 
 (add-hook 'dired-mode-hook 'ggtags-mode)
 
+;; screen/window settings
+;; navigate windows with M-<arros>
+(windmove-default-keybindings 'meta)
+(setq windmove-wrap-around t)
 ;; full screen
 (defun fullscreen ()
   (interactive)
   (set-frame-parameter nil 'fullscreen 
 		       (if (frame-parameter nil 'fullscreen) nil 'fullboth)))
 (global-set-key [f11] 'fullscreen)
+;;golden ratio package
+(require 'golden-ratio)
+(add-to-list 'golden-ratio-exclude-modes "ediff-mode")
+(add-to-list 'golden-ratio-exclude-modes "helm-mode")
+(add-to-list 'golden-ratio-exclude-modes "dired-mode")
+(add-to-list 'golden-ratio-inhibit-functions 'pl/helm-alive-p)
+
+(defun pl/helm-alive-p ()
+  (if (boundp 'helm-alive-p)
+      (symbol-value 'helm-alive-p)))
+
+;; do not enable golden-raio in thses modes
+(setq golden-ratio-exclude-modes '("ediff-mode"
+                                   "gud-mode"
+                                   "gdb-locals-mode"
+                                   "gdb-registers-mode"
+                                   "gdb-breakpoints-mode"
+                                   "gdb-threads-mode"
+                                   "gdb-frames-mode"
+                                   "gdb-inferior-io-mode"
+                                   "gud-mode"
+                                   "gdb-inferior-io-mode"
+                                   "gdb-disassembly-mode"
+                                   "gdb-memory-mode"
+                                   "magit-log-mode"
+                                   "magit-reflog-mode"
+                                   "magit-status-mode"
+                                   "IELM"
+                                   "eshell-mode" "dired-mode"))
+
+(golden-ratio-mode)
+
 
 ;; notifies you once emacs is ready to use and the load time 
 (defun dim:notify-startup-done ()
