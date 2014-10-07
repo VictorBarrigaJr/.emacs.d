@@ -37,7 +37,7 @@ Of course if you do alter this file but still want to be able to git pull in
 the future, you'd better branch.
 
 
-### manual steps ###
+### Manual steps ###
 
 Once the first startup is done, consider +M-x el-get-emacswiki-refresh+ so
 that you're able to easily install any package from +emacswiki+. Just add 
