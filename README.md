@@ -46,5 +46,6 @@ In the future this very simple emacs setup will grow and use several files.
 
 ### Changing Preferences ###
 
-If you want a different setup from the basic +emacs-kicker+ here, the
-simplest way is certainly to fork the project on github then use your own 
+If you want a different setup from the basic emacs here, the simplest way is 
+to fork the project on github then use your own prefrences to add or delete
+settings. 
