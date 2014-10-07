@@ -110,23 +110,28 @@
 ;;--------------------------------------------------------------------------
 ;; Screen and Window Management  
 ;;--------------------------------------------------------------------------
-;; Buffer Navigation
-(windmove-default-keybindings 'meta) ;; navigate buffers with M-<arros>
-(setq windmove-wrap-around t)
 (require 'smooth-scrolling)
 (require 'uniquify) ;; creates unique buffer names
 (require 'ansi-color) 
-(setq color-theme-is-global t) ;; color theme
-(color-theme-xemacs)
 (setq inhibit-startup-message t) ;; no startup message at startup
 (setq inhibit-splash-screen t) ;; no splash screen at startup
 (setq-default indent-tabs-mode nil) ;; no tabs
 (menu-bar-mode -1) ;; no menu toolbar 
+
+;; insert line numbers
 (global-linum-mode 1) ;; add line numbers to the left
 (global-hl-line-mode) ;; highlight current line
 
+;; theme
+(setq color-theme-is-global t) 
+(color-theme-xemacs)
+
+;; Buffer Navigation
+(windmove-default-keybindings 'meta) ;; navigate buffers with M-<arros>
+(setq windmove-wrap-around t)
+
 ;; Fullscreen
-(defun fullscreen () ;; enable fullscreen
+(defun fullscreen () 
   (interactive)
   (set-frame-parameter nil 'fullscreen 
 		       (if (frame-parameter nil 'fullscreen) nil 'fullboth)))
@@ -225,6 +230,7 @@
 ;;--------------------------------------------------------------------------
 (require 'ffap) ;; Find File at Point - used to open a directory path 
 (require 'dired-x) ;; (Di)rectory (Ed)itor - for file management
+
 (require 'recentf) ;; recent files
 (setq
  recentf-max-menu-items 30
