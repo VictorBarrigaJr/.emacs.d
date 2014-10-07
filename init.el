@@ -6,7 +6,7 @@
 ;;
 ;; Emacs configuration file init.el
 ;;
-;; Licence: GNU GPL v3.0, http://www.gnu.org/licenses/gpl-3.0.txt
+;; License: GNU GPL v3.0, http://www.gnu.org/licenses/gpl-3.0.txt
 ;;
 ;; This file is NOT part of GNU Emacs.
 
