@@ -79,7 +79,7 @@
 (setq my:el-get-packages
       (append
        '(auto-complete auto-complete-c-headers buffer-move color-theme el-get
-	 emacs-goodies-el escreen fill-column-indicator fuzzy flymake gnus 	 
+	 emacs-goodies-el escreen fill-column-indicator fuzzy flymake gnus
 	 ggtags iedit minimap notify package popup smex smooth-scrolling
 	 switch-window volatile-highlights yasnippet smartparens undo-tree 
          whitespace company-mode golden-ratio rainbow-mode helm sr-speedbar)))
@@ -117,10 +117,19 @@
 (setq inhibit-splash-screen t) ;; no splash screen at startup
 (setq-default indent-tabs-mode nil) ;; no tabs
 (menu-bar-mode -1) ;; no menu toolbar 
+(display-time-mode t) ;; adds time to bottom window 
+(column-number-mode t)
+(mouse-avoidance-mode 'banish) ;; hides mouse cursor when not moved
 
 ;; insert line numbers
 (global-linum-mode 1) ;; add line numbers to the left
-(global-hl-line-mode) ;; highlight current line
+(global-hl-line-mode t) ;; highlight current line
+
+;; aligns the line numbers to the right
+(defun linum-format-func (line)
+  (let ((w (length (number-to-string (count-lines (point-min) (point-max))))))
+     (propertize (format (format "%%%dd " w) line) 'face 'linum)))
+(setq linum-format 'linum-format-func)
 
 ;; theme
 (setq color-theme-is-global t) 
@@ -139,7 +148,10 @@
 
 ;;golden ratio package 
 (require 'golden-ratio)
-(golden-ratio-mode) ;; allows for automatic buffer size based on current window 
+(golden-ratio-mode t) ;; allows for automatic buffer size based on current window 
+
+;; wraps lines around in a nice way
+(global-visual-line-mode 1)
 
 (custom-set-faces ;;custom settings  
  '(flymake-errline ((((class color) (background light)) (:background "Red"))))
@@ -171,7 +183,7 @@
 (ac-config-default) ;; auto-complete global
 (yas-global-mode 1) ;; yasnippet global
 (require 'flymake)
-(normal-erase-is-backspace-mode 1)
+;;(normal-erase-is-backspace-mode 1)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (setq save-abbrevs nil)
@@ -256,7 +268,7 @@
 
 ;; Undo-tree - editing - view whole history of editing in a tree
 (require 'undo-tree)
-(global-undo-tree-mode)
+(global-undo-tree-mode t)
 
 (require 'magit)
 
