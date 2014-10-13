@@ -131,9 +131,16 @@
      (propertize (format (format "%%%dd " w) line) 'face 'linum)))
 (setq linum-format 'linum-format-func)
 
-;; theme
-(setq color-theme-is-global t) 
-(color-theme-xemacs)
+;; set custom theme load path  
+(add-to-list 'custom-theme-load-path
+             (file-name-as-directory "~/.emacs.d/replace-colorthemes/"))
+
+;; load theme
+(load-theme 'tty-dark t t)
+(enable-theme 'tty-dark)
+
+;;(setq color-theme-is-global t) 
+;;(color-theme-xemacs)
 
 ;; Buffer Navigation
 (windmove-default-keybindings 'meta) ;; navigate buffers with M-<arros>
